@@ -1,13 +1,36 @@
 <template>
-    $END$
+        <div class="mui-numbox" data-numbox-min='1' :data-numbox-max='max'>
+            <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+            <input id="test" class="mui-input-numbox" type="number" value="1" @change="countChange" ref="numbox"/>
+            <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+        </div>
+
+
 </template>
 
 <script>
+    import mui from '../../lib/mui/js/mui.min.js'
     export default {
-        name: "goodinfo_numbox"
+        mounted () {
+            //初始化数字选择组件
+            mui('.mui-numbox').numbox();
+        },
+        methods : {
+            countChange () {
+                //每当文本框的数据调用时，把数据传递给父组件
+                this.$emit('getCount',parseInt(this.$refs.numbox.value));
+            }
+        },
+        props : ['max'],
+        watch : {
+            //监听属性值变化
+            max : function (newVal,oldVal) {
+                mui('.mui-input-numbox').numbox().setOptions('max',newVal);
+            }
+        }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

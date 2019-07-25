@@ -4,12 +4,12 @@
 
 
             <li class="mui-table-view-cell mui-media" v-for="item in newsList" :key="item.id">
-                <router-link :to="'/newsList/newsInfo/'+item.id">
+                <router-link :to="'/home/newsInfo/'+item.id">
                     <img class="mui-media-object mui-pull-left" :src="item.img_url">
                     <div class="mui-media-body">
                         <h1>{{item.title}}</h1>
                         <p class='mui-ellipsis'>
-                            <span>{{item.add_time | dataFormat}}</span>
+                            <span>{{item.add_time | dateFormat}}</span>
                             <span>{{item.click}}</span>
                         </p>
                     </div>

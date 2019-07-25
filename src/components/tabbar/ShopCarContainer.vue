@@ -1,13 +1,13 @@
+
 <template>
-    $END$
+    <div>
+        <h1>ShopCarContainer</h1>
+    </div>
 </template>
 
 <script>
-    export default {
-        name: "ShopCarContainer"
-    }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

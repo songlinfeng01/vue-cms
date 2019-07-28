@@ -3,7 +3,11 @@
 <template>
   <div class="app-container">
     <!--顶部通栏-->
-    <mt-header fixed title="vue测试项目"></mt-header>
+    <mt-header fixed title="vue测试项目">
+      <span slot="left" @click="goBack" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
     <!--中间内容 路由-->
     <transition>
       <router-view></router-view>
@@ -22,7 +26,7 @@
       </router-link>
       <router-link class="mui-tab-item-llb" to="/shopcar">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge" id="badge">0</span>
+          <span class="mui-badge" id="badge">{{$store.getters.getAllCount}}</span>
         </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
@@ -37,6 +41,33 @@
 
 <script>
 
+  export default{
+      data () {
+        return {
+            flag : true
+        }
+      },
+      methods : {
+          goBack () {
+              this.$router.go(-1);
+              console.log(this.$route)
+          }
+      },
+      created () {
+
+      },
+      watch : {
+          '$route.path' : function (newVal) {
+              if (newVal === '/home') {
+                  this.flag = false;
+              } else {
+                  this.flag = true;
+              }
+
+          }
+      }
+
+  }
 </script>
 
 

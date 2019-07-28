@@ -27,7 +27,7 @@
                     </p>
                     <p>
                         <mt-button type="primary" size="small">立即购买</mt-button>
-                        <mt-button type="danger" size="small" @click="ballFlag=!ballFlag">加入购物车 </mt-button>
+                        <mt-button type="danger" size="small" @click="addToShopCar">加入购物车 </mt-button>
                     </p>
                 </div>
             </div>
@@ -99,6 +99,15 @@
             addToShopCar() {
                 // 添加到购物车
                 this.ballFlag = !this.ballFlag;
+                //{id:商品id,count:购买数量，price:单价，selected:是否被选中}
+                let goodsInfo = {
+                    id : this.id,
+                    count : this.selectedCount,
+                    price : this.goodsInfo.sell_price,
+                    selected : true
+                };
+                this.$store.commit('addToCar',goodsInfo);
+
             },
             beforeEnter(el) {
                 el.style.transform = "translate(0, 0)";
@@ -133,7 +142,7 @@
             getSelectedCount (count) {
                 //子组件向父组件传值，把选中的数据保存到count上
                 this.selectedCount = count;
-                console.log('父组件拿到的值为'+this.selectedCount);
+                //console.log('父组件拿到的值为'+this.selectedCount);
             }
 
         },

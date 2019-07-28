@@ -1,5 +1,5 @@
 <template>
-        <div class="mui-numbox" data-numbox-min='1' :data-numbox-max='max'>
+        <div class="mui-numbox" data-numbox-min='1'>
             <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
             <input id="test" class="mui-input-numbox" type="number" value="1" @change="countChange" ref="numbox"/>
             <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
@@ -25,7 +25,10 @@
         watch : {
             //监听属性值变化
             max : function (newVal,oldVal) {
-                mui('.mui-input-numbox').numbox().setOptions('max',newVal);
+                // 使用 JS API 设置 numbox 的最大值
+                mui(".mui-numbox")
+                    .numbox()
+                    .setOption("max", newVal);
             }
         }
     }
